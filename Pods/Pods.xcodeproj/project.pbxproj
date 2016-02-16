@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1CA5E5B427016F8F21C95D7088C3FA48 /* OMGHTTPURLRQ-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1990419A7FC3D8A50F9D1A7C0CC5C7E5 /* OMGHTTPURLRQ-dummy.m */; };
+		352E97907248416B590FA3F1BB630EF7 /* TDOAuth.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DC7D555D33B544339B05188B7730BD /* TDOAuth.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48FD54B161094645748D2BACA8DE4A5B /* OMGUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E88838D0DDF2FE93721469CBE9F62C /* OMGUserAgent.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4C5D05EAD286DB3CC9720CF3F5FA9AE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		64030E44777577FAF5FDB5848A6B1CFB /* TDOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 78292A4CD8377B368E0FE6A6143D9437 /* TDOAuth.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6BA059678A8732487F69EB681733149F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		849E6CB16A39DEC6644494FAC883EB73 /* Pods-BusinessQuery-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23036F8552F73810F5B2C39B76E6E093 /* Pods-BusinessQuery-dummy.m */; };
+		B9E8E2371FE8FD4E46B1F60BABE8C0D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		F29C6CB87595941B74EE3F238D78B367 /* OMGUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 685A2BFAABB1660FCFF52F5DA22AA4ED /* OMGUserAgent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F42FCBDEDCACF320A67C68D48BDDD8DB /* TDOAuth-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB5B09DF1A1955EBCE6528CD960265A /* TDOAuth-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		152D9A379F3231075466AA404C10F887 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCD660E6CD2216BA204430C04B61EFFF;
+			remoteInfo = OMGHTTPURLRQ;
+		};
+		56B14E6F2D755BBD1FB5846ACCBBB205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AB53B3266411B0F717D95B3521A5246;
+			remoteInfo = TDOAuth;
+		};
+		B16C8C84B67B4A3E6346EEF218A81625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCD660E6CD2216BA204430C04B61EFFF;
+			remoteInfo = OMGHTTPURLRQ;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1990419A7FC3D8A50F9D1A7C0CC5C7E5 /* OMGHTTPURLRQ-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OMGHTTPURLRQ-dummy.m"; sourceTree = "<group>"; };
+		23036F8552F73810F5B2C39B76E6E093 /* Pods-BusinessQuery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BusinessQuery-dummy.m"; sourceTree = "<group>"; };
+		3CB5B09DF1A1955EBCE6528CD960265A /* TDOAuth-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TDOAuth-dummy.m"; sourceTree = "<group>"; };
+		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4F7C264C6E8B429E46DF0CBF98B6A616 /* Pods-BusinessQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BusinessQuery.debug.xcconfig"; sourceTree = "<group>"; };
+		566CC7B03585AF2E4B74831A09AEE3DE /* libTDOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTDOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FEA2DB655A4C61036102C79FFBC5797 /* TDOAuth.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TDOAuth.xcconfig; sourceTree = "<group>"; };
+		66DC7D555D33B544339B05188B7730BD /* TDOAuth.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TDOAuth.h; sourceTree = "<group>"; };
+		67E88838D0DDF2FE93721469CBE9F62C /* OMGUserAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OMGUserAgent.m; path = Sources/OMGUserAgent.m; sourceTree = "<group>"; };
+		685A2BFAABB1660FCFF52F5DA22AA4ED /* OMGUserAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OMGUserAgent.h; path = Sources/OMGUserAgent.h; sourceTree = "<group>"; };
+		719FB8C9C66EBB8927A606BFE674AF40 /* libPods-BusinessQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BusinessQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		756D6C6C43AB51AD01C871FBA889FE8F /* libOMGHTTPURLRQ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOMGHTTPURLRQ.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7714E17700926E229D0B3ACB0B23B46E /* OMGHTTPURLRQ.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OMGHTTPURLRQ.xcconfig; sourceTree = "<group>"; };
+		78292A4CD8377B368E0FE6A6143D9437 /* TDOAuth.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TDOAuth.m; sourceTree = "<group>"; };
+		7EEFDA154ED65FE2BAEC406F22E9D8F3 /* Pods-BusinessQuery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BusinessQuery.release.xcconfig"; sourceTree = "<group>"; };
+		A27BCD8765A47A5AE84E94EE57421460 /* Pods-BusinessQuery-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BusinessQuery-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CDAD9728608E50A047ABDEDB7ED2A946 /* Pods-BusinessQuery-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BusinessQuery-resources.sh"; sourceTree = "<group>"; };
+		E19A30784EA08E4F1417D5CB1DC6DD6B /* OMGHTTPURLRQ-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OMGHTTPURLRQ-prefix.pch"; sourceTree = "<group>"; };
+		E1B8379EC9E7274D661EF1E8495BC48E /* Pods-BusinessQuery-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BusinessQuery-acknowledgements.plist"; sourceTree = "<group>"; };
+		E7C9A5532B8F2F19F585AB5BB0A5E189 /* TDOAuth-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TDOAuth-prefix.pch"; sourceTree = "<group>"; };
+		F03398C138883EB2288E078C97F08AE8 /* Pods-BusinessQuery-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BusinessQuery-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06DF07A7F70611A3E1FD76D182EE36DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BA059678A8732487F69EB681733149F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BD5C1D166FFEA79FA973FFD1D30A414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9E8E2371FE8FD4E46B1F60BABE8C0D8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBF5DBFFD61E8C8235057F057204388F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C5D05EAD286DB3CC9720CF3F5FA9AE2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E3A906538D7EE3E7FED833EE546299E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7714E17700926E229D0B3ACB0B23B46E /* OMGHTTPURLRQ.xcconfig */,
+				1990419A7FC3D8A50F9D1A7C0CC5C7E5 /* OMGHTTPURLRQ-dummy.m */,
+				E19A30784EA08E4F1417D5CB1DC6DD6B /* OMGHTTPURLRQ-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/OMGHTTPURLRQ";
+			sourceTree = "<group>";
+		};
+		30B236CD35AB9B10F86717B8D68B4D82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				756D6C6C43AB51AD01C871FBA889FE8F /* libOMGHTTPURLRQ.a */,
+				719FB8C9C66EBB8927A606BFE674AF40 /* libPods-BusinessQuery.a */,
+				566CC7B03585AF2E4B74831A09AEE3DE /* libTDOAuth.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F8016B0518E5C7DA331444ECBF3467B /* Pods-BusinessQuery */ = {
+			isa = PBXGroup;
+			children = (
+				A27BCD8765A47A5AE84E94EE57421460 /* Pods-BusinessQuery-acknowledgements.markdown */,
+				E1B8379EC9E7274D661EF1E8495BC48E /* Pods-BusinessQuery-acknowledgements.plist */,
+				23036F8552F73810F5B2C39B76E6E093 /* Pods-BusinessQuery-dummy.m */,
+				F03398C138883EB2288E078C97F08AE8 /* Pods-BusinessQuery-frameworks.sh */,
+				CDAD9728608E50A047ABDEDB7ED2A946 /* Pods-BusinessQuery-resources.sh */,
+				4F7C264C6E8B429E46DF0CBF98B6A616 /* Pods-BusinessQuery.debug.xcconfig */,
+				7EEFDA154ED65FE2BAEC406F22E9D8F3 /* Pods-BusinessQuery.release.xcconfig */,
+			);
+			name = "Pods-BusinessQuery";
+			path = "Target Support Files/Pods-BusinessQuery";
+			sourceTree = "<group>";
+		};
+		6F9F6ED24E7EBF6EBB08346D4101DDB4 /* TDOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				66DC7D555D33B544339B05188B7730BD /* TDOAuth.h */,
+				78292A4CD8377B368E0FE6A6143D9437 /* TDOAuth.m */,
+				7018DDD187188F414DC68FFF52349F69 /* Support Files */,
+			);
+			path = TDOAuth;
+			sourceTree = "<group>";
+		};
+		7018DDD187188F414DC68FFF52349F69 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5FEA2DB655A4C61036102C79FFBC5797 /* TDOAuth.xcconfig */,
+				3CB5B09DF1A1955EBCE6528CD960265A /* TDOAuth-dummy.m */,
+				E7C9A5532B8F2F19F585AB5BB0A5E189 /* TDOAuth-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TDOAuth";
+			sourceTree = "<group>";
+		};
+		79DC324FC62BD5296B4EB21B2231821B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2CDDB17F5CBAF96010565A7EA715BD9 /* OMGHTTPURLRQ */,
+				6F9F6ED24E7EBF6EBB08346D4101DDB4 /* TDOAuth */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				79DC324FC62BD5296B4EB21B2231821B /* Pods */,
+				30B236CD35AB9B10F86717B8D68B4D82 /* Products */,
+				E3141060312F142D6BC28D053448CE5A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E2CDDB17F5CBAF96010565A7EA715BD9 /* OMGHTTPURLRQ */ = {
+			isa = PBXGroup;
+			children = (
+				2E3A906538D7EE3E7FED833EE546299E /* Support Files */,
+				E4E4AB7D4EF105C01FC45035C64E5496 /* UserAgent */,
+			);
+			path = OMGHTTPURLRQ;
+			sourceTree = "<group>";
+		};
+		E3141060312F142D6BC28D053448CE5A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3F8016B0518E5C7DA331444ECBF3467B /* Pods-BusinessQuery */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		E4E4AB7D4EF105C01FC45035C64E5496 /* UserAgent */ = {
+			isa = PBXGroup;
+			children = (
+				685A2BFAABB1660FCFF52F5DA22AA4ED /* OMGUserAgent.h */,
+				67E88838D0DDF2FE93721469CBE9F62C /* OMGUserAgent.m */,
+			);
+			name = UserAgent;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9287CA34744D152FA82A6D84501F62A2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				352E97907248416B590FA3F1BB630EF7 /* TDOAuth.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C46B1B2248038D58B7A9923C26B11B29 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F29C6CB87595941B74EE3F238D78B367 /* OMGUserAgent.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2AB53B3266411B0F717D95B3521A5246 /* TDOAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50F43DAB0A0A94C12A706FFDC9C49D4A /* Build configuration list for PBXNativeTarget "TDOAuth" */;
+			buildPhases = (
+				7EEEEB7DC81CF68D66DB48A1665FF98D /* Sources */,
+				BBF5DBFFD61E8C8235057F057204388F /* Frameworks */,
+				9287CA34744D152FA82A6D84501F62A2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F66846D61F1E2FD31515086AB3445745 /* PBXTargetDependency */,
+			);
+			name = TDOAuth;
+			productName = TDOAuth;
+			productReference = 566CC7B03585AF2E4B74831A09AEE3DE /* libTDOAuth.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		4A9BFF02981433E76F0F7E03440464F0 /* Pods-BusinessQuery */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 77666E8847A6AC707FD2FF1E13EF05D0 /* Build configuration list for PBXNativeTarget "Pods-BusinessQuery" */;
+			buildPhases = (
+				F01E4E6D647592F72D2E54FDCEE21823 /* Sources */,
+				7BD5C1D166FFEA79FA973FFD1D30A414 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A40E0DE88F103CA45E431A28B72847DF /* PBXTargetDependency */,
+				3E4DC0B8936F800FC93929D733070F79 /* PBXTargetDependency */,
+			);
+			name = "Pods-BusinessQuery";
+			productName = "Pods-BusinessQuery";
+			productReference = 719FB8C9C66EBB8927A606BFE674AF40 /* libPods-BusinessQuery.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FCD660E6CD2216BA204430C04B61EFFF /* OMGHTTPURLRQ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCDAA84180B46191D5FDD1F3233A04FE /* Build configuration list for PBXNativeTarget "OMGHTTPURLRQ" */;
+			buildPhases = (
+				5AE69805046AB1822BAFEC93CBB54CA1 /* Sources */,
+				06DF07A7F70611A3E1FD76D182EE36DE /* Frameworks */,
+				C46B1B2248038D58B7A9923C26B11B29 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OMGHTTPURLRQ;
+			productName = OMGHTTPURLRQ;
+			productReference = 756D6C6C43AB51AD01C871FBA889FE8F /* libOMGHTTPURLRQ.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 30B236CD35AB9B10F86717B8D68B4D82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FCD660E6CD2216BA204430C04B61EFFF /* OMGHTTPURLRQ */,
+				4A9BFF02981433E76F0F7E03440464F0 /* Pods-BusinessQuery */,
+				2AB53B3266411B0F717D95B3521A5246 /* TDOAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5AE69805046AB1822BAFEC93CBB54CA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CA5E5B427016F8F21C95D7088C3FA48 /* OMGHTTPURLRQ-dummy.m in Sources */,
+				48FD54B161094645748D2BACA8DE4A5B /* OMGUserAgent.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EEEEB7DC81CF68D66DB48A1665FF98D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42FCBDEDCACF320A67C68D48BDDD8DB /* TDOAuth-dummy.m in Sources */,
+				64030E44777577FAF5FDB5848A6B1CFB /* TDOAuth.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E4E6D647592F72D2E54FDCEE21823 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				849E6CB16A39DEC6644494FAC883EB73 /* Pods-BusinessQuery-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E4DC0B8936F800FC93929D733070F79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TDOAuth;
+			target = 2AB53B3266411B0F717D95B3521A5246 /* TDOAuth */;
+			targetProxy = 56B14E6F2D755BBD1FB5846ACCBBB205 /* PBXContainerItemProxy */;
+		};
+		A40E0DE88F103CA45E431A28B72847DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OMGHTTPURLRQ;
+			target = FCD660E6CD2216BA204430C04B61EFFF /* OMGHTTPURLRQ */;
+			targetProxy = 152D9A379F3231075466AA404C10F887 /* PBXContainerItemProxy */;
+		};
+		F66846D61F1E2FD31515086AB3445745 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OMGHTTPURLRQ;
+			target = FCD660E6CD2216BA204430C04B61EFFF /* OMGHTTPURLRQ */;
+			targetProxy = B16C8C84B67B4A3E6346EEF218A81625 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07154DC26C9CFAEE1A57B1789ECDDADC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FEA2DB655A4C61036102C79FFBC5797 /* TDOAuth.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TDOAuth/TDOAuth-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4E3A2B6FF9CAD13ADB399CA336AEB734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7714E17700926E229D0B3ACB0B23B46E /* OMGHTTPURLRQ.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OMGHTTPURLRQ/OMGHTTPURLRQ-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8D1534490D941DCA47C62AC4314182AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A0D710AB67BB22694BBE36BB1C17534D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EEFDA154ED65FE2BAEC406F22E9D8F3 /* Pods-BusinessQuery.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C5A18280E9321A9268D1C80B7DA43967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E56BCF65F620F8A7E8197A9DD04F986A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FEA2DB655A4C61036102C79FFBC5797 /* TDOAuth.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TDOAuth/TDOAuth-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ECA04D9401EBF1000FBB551C2BB534E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F7C264C6E8B429E46DF0CBF98B6A616 /* Pods-BusinessQuery.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F62B05746BAB50E1343D0A8F424C9874 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7714E17700926E229D0B3ACB0B23B46E /* OMGHTTPURLRQ.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OMGHTTPURLRQ/OMGHTTPURLRQ-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D1534490D941DCA47C62AC4314182AF /* Debug */,
+				C5A18280E9321A9268D1C80B7DA43967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50F43DAB0A0A94C12A706FFDC9C49D4A /* Build configuration list for PBXNativeTarget "TDOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E56BCF65F620F8A7E8197A9DD04F986A /* Debug */,
+				07154DC26C9CFAEE1A57B1789ECDDADC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77666E8847A6AC707FD2FF1E13EF05D0 /* Build configuration list for PBXNativeTarget "Pods-BusinessQuery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA04D9401EBF1000FBB551C2BB534E8 /* Debug */,
+				A0D710AB67BB22694BBE36BB1C17534D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCDAA84180B46191D5FDD1F3233A04FE /* Build configuration list for PBXNativeTarget "OMGHTTPURLRQ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E3A2B6FF9CAD13ADB399CA336AEB734 /* Debug */,
+				F62B05746BAB50E1343D0A8F424C9874 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

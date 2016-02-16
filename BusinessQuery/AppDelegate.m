@@ -7,6 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import <TDOAuth/TDOAuth.h>
+
+
+/**
+ OAuth credentials for Yelp API
+ */
+static NSString * const kConsumerKey = @"6GzQoclYOQO64IxfdDbLIg";
+static NSString * const kConsumerSecret = @"jIdJq3f8OQBttyn-jXItE6Zj4iQ";
+static NSString * const kToken = @"8fSKYgQ9K7s2sYF4D4LyoTMgod3ue8uo";
+static NSString * const kTokenSecret = @"Zdj2XM83GDzA15QcLwJVSvpHrVc";
 
 @interface AppDelegate ()
 
@@ -41,5 +51,22 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+#pragma mark - Class method implementation
+
++ (NSURLRequest *)requestWithHost:(NSString *)host path:(NSString *)path params:(NSDictionary *)params {
+    return [TDOAuth URLRequestForPath:path
+                        GETParameters:params
+                               scheme:@"https"
+                                 host:host
+                          consumerKey:kConsumerKey
+                       consumerSecret:kConsumerSecret
+                          accessToken:kToken
+                          tokenSecret:kTokenSecret];
+}
+
+
 
 @end
