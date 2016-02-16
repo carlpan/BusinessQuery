@@ -29,7 +29,7 @@ static NSString * const kSearchLimit = @"3";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
+    [self queryNearbyBusiness];
 }
 
 #pragma mark - Private methods for querying
@@ -65,8 +65,9 @@ static NSString * const kSearchLimit = @"3";
         }
         
         // Get "businesses" array containing requested nearby businesses
-        //NSArray *businessArray = searchResponseJSON[@"businesses"];
-        
+        NSArray *businessArray = searchResponseJSON[@"businesses"];
+        NSLog(@"%d", (int)[businessArray count]);
+        NSLog(@"%@", businessArray[0][@"name"]);
         // continue with building the business dictionary containing required info to display to table view cell
         
     }];
