@@ -8,18 +8,23 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "MyCell.h"
+#import "MerchantInfo.h"
 
 /**
  Paths and search terms for Yelp API
  */
 static NSString * const kAPIHost = @"api.yelp.com";
 static NSString * const kSearchPath = @"/v2/search/";
-static NSString * const kSearchLimit = @"3";
+//static NSString * const kSearchLimit = @"3";
 
 @interface ViewController ()
 
-@property (strong, nonatomic) NSArray *merchants;
-@property (strong, nonatomic) NSDictionary *merchantDetails;
+/*
+@property (strong, nonatomic) NSDictionary *merchantOneDetails;
+@property (strong, nonatomic) NSDictionary *merchantTwoDetails;
+@property (strong, nonatomic) NSDictionary *merchantThreeDetails;
+*/
 
 @end
 
@@ -64,11 +69,42 @@ static NSString * const kSearchLimit = @"3";
             return;
         }
         
+        // On success
         // Get "businesses" array containing requested nearby businesses
         NSArray *businessArray = searchResponseJSON[@"businesses"];
-        NSLog(@"%d", (int)[businessArray count]);
-        NSLog(@"%@", businessArray[0][@"name"]);
-        // continue with building the business dictionary containing required info to display to table view cell
+        
+        // Run on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Initialized array of businesses dictionary
+            self.merchants = [NSMutableArray array];
+            
+            // Loop through the 'businesses' array
+            for (NSDictionary *merchantDictionary in businessArray) {
+                // Create MerchantInfo object
+                MerchantInfo *mInfo = [MerchantInfo merchantInfoWithName:[merchantDictionary objectForKey:@"name"]];
+                // set merchant category
+                mInfo.category = [merchantDictionary objectForKey:@"categories"][0][0];
+                // set merchant open status
+                if ([merchantDictionary objectForKey:@"is_closed"]) {
+                    mInfo.openStatus = @"OPEN";
+                } else {
+                    mInfo.openStatus = @"CLOSED";
+                }
+                
+                // add object to merchants array
+                [self.merchants addObject:mInfo];
+            }
+            
+            /*
+            // fill in the details for three merchant dictionaries
+            self.merchantOneDetails = businessArray[0];
+            self.merchantTwoDetails = businessArray[1];
+            self.merchantThreeDetails = businessArray[2];
+            */
+            
+            // Fill tableview with data
+            [self.tableView reloadData];
+        });
         
     }];
     
@@ -83,12 +119,58 @@ static NSString * const kSearchLimit = @"3";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.merchants count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
+    MyCell *cell = (MyCell *)[tableView dequeueReusableCellWithIdentifier:@"MyCell" forIndexPath:indexPath];
+    
+    // remove leading margin for tableview separator
+    [cell setLayoutMargins:UIEdgeInsetsZero];
 
+    // Customize cell with merchant information
+    MerchantInfo *mInfo = [self.merchants objectAtIndex:indexPath.row];
+    cell.merchantName.text = mInfo.name;
+    cell.merchantCategory.text = mInfo.category;
+    cell.openStatus.text = mInfo.openStatus;
+    
+    /*
+    switch (indexPath.row) {
+        case 0:
+            cell.merchantName.text = [self.merchantOneDetails objectForKey:@"name"];
+            cell.merchantCategory.text = [self.merchantOneDetails objectForKey:@"categories"][0][0];
+            if ([self.merchantOneDetails objectForKey:@"is_closed"]) {
+                cell.openStatus.text = @"OPEN";
+            } else {
+                cell.openStatus.text = @"CLOSED";
+            }
+            break;
+        case 1:
+            cell.merchantName.text = [self.merchantTwoDetails objectForKey:@"name"];
+            cell.merchantCategory.text = [self.merchantTwoDetails objectForKey:@"categories"][0][0];
+            if ([self.merchantTwoDetails objectForKey:@"is_closed"]) {
+                cell.openStatus.text = @"OPEN";
+            } else {
+                cell.openStatus.text = @"CLOSED";
+            }
+
+            break;
+        case 2:
+            cell.merchantName.text = [self.merchantThreeDetails objectForKey:@"name"];
+            cell.merchantCategory.text = [self.merchantThreeDetails objectForKey:@"categories"][0][0];
+            if ([self.merchantThreeDetails objectForKey:@"is_closed"]) {
+                cell.openStatus.text = @"OPEN";
+            } else {
+                cell.openStatus.text = @"CLOSED";
+            }
+
+            break;
+            
+        default:
+            break;
+    }
+     */
+     
     return cell;
 }
 
@@ -102,8 +184,9 @@ static NSString * const kSearchLimit = @"3";
  @param location specifies the city or neighborhoods of the search
  */
 - (NSURLRequest *)_searchRequestWithLocation:(NSString *)location {
-    NSDictionary *params = @{@"location": location, @"limit": kSearchLimit};
-    
+    //NSDictionary *params = @{@"location": location, @"limit": kSearchLimit};
+    NSDictionary *params = @{@"location": location};
+
     return [AppDelegate requestWithHost:kAPIHost path:kSearchPath params:params];
 }
 

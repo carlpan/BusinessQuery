@@ -60,6 +60,7 @@
                                         <constraint firstItem="3nu-cW-J3M" firstAttribute="leading" secondItem="r0e-sn-HXX" secondAttribute="leadingMargin" constant="15" id="opi-Nr-efJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="merchantCategory" destination="3nu-cW-J3M" id="926-k6-fVl"/>
                                     <outlet property="merchantName" destination="MEP-p4-UpP" id="gew-Md-Ibe"/>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B35D0CB21C73DEB600571C87 /* MerchantInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B35D0CB11C73DEB600571C87 /* MerchantInfo.m */; };
 		B3DFA4FA1C72CA1A006F091D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4F91C72CA1A006F091D /* main.m */; };
 		B3DFA4FD1C72CA1A006F091D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4FC1C72CA1A006F091D /* AppDelegate.m */; };
 		B3DFA5001C72CA1A006F091D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4FF1C72CA1A006F091D /* ViewController.m */; };
@@ -21,6 +22,8 @@
 		1513FCA623E5D2C02CA5D345 /* libPods-BusinessQuery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BusinessQuery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15CD144EE1FA5BB7441AE948 /* Pods-BusinessQuery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessQuery.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BusinessQuery/Pods-BusinessQuery.debug.xcconfig"; sourceTree = "<group>"; };
 		8E5960DD6C5C1999C868A09C /* Pods-BusinessQuery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessQuery.release.xcconfig"; path = "Pods/Target Support Files/Pods-BusinessQuery/Pods-BusinessQuery.release.xcconfig"; sourceTree = "<group>"; };
+		B35D0CB01C73DEB600571C87 /* MerchantInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantInfo.h; sourceTree = "<group>"; };
+		B35D0CB11C73DEB600571C87 /* MerchantInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInfo.m; sourceTree = "<group>"; };
 		B3DFA4F51C72CA1A006F091D /* BusinessQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DFA4F91C72CA1A006F091D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B3DFA4FB1C72CA1A006F091D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				B3DFA4FC1C72CA1A006F091D /* AppDelegate.m */,
 				B3DFA5121C72EE78006F091D /* MyCell.h */,
 				B3DFA5131C72EE78006F091D /* MyCell.m */,
+				B35D0CB01C73DEB600571C87 /* MerchantInfo.h */,
+				B35D0CB11C73DEB600571C87 /* MerchantInfo.m */,
 				B3DFA4FE1C72CA1A006F091D /* ViewController.h */,
 				B3DFA4FF1C72CA1A006F091D /* ViewController.m */,
 				B3DFA5011C72CA1A006F091D /* Main.storyboard */,
@@ -233,6 +238,7 @@
 				B3DFA5141C72EE78006F091D /* MyCell.m in Sources */,
 				B3DFA4FD1C72CA1A006F091D /* AppDelegate.m in Sources */,
 				B3DFA4FA1C72CA1A006F091D /* main.m in Sources */,
+				B35D0CB21C73DEB600571C87 /* MerchantInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
