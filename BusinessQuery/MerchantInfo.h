@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSString *openStatus;
 @property (strong, nonatomic) NSString *thumbnail;
+@property (strong, nonatomic) NSURL *url;
 
 
 - (id)initWithName:(NSString *)name;

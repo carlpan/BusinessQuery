@@ -15,11 +15,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="100" id="oJC-tX-Wg1" customClass="MyCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="100" id="oJC-tX-Wg1" customClass="MyCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oJC-tX-Wg1" id="r0e-sn-HXX">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEP-p4-UpP">
@@ -66,6 +66,7 @@
                                     <outlet property="merchantName" destination="MEP-p4-UpP" id="gew-Md-Ibe"/>
                                     <outlet property="openStatus" destination="jYy-LQ-YPg" id="pia-QR-CO0"/>
                                     <outlet property="thumbnailImageView" destination="Zet-NR-U7R" id="BbM-SA-8ga"/>
+                                    <segue destination="0jp-fI-tBQ" kind="show" identifier="showContent" id="6q9-PH-Vfi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -78,7 +79,41 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tx2-yP-94C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2657" y="977"/>
+            <point key="canvasLocation" x="2461" y="953"/>
+        </scene>
+        <!--Web Detail View Controller-->
+        <scene sceneID="QbB-w3-y6K">
+            <objects>
+                <viewController id="0jp-fI-tBQ" customClass="WebDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xQT-QK-eqQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="S9R-pL-0G8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BTg-cn-f2h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYj-1a-vTE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="MYj-1a-vTE" secondAttribute="trailing" constant="-20" id="0TL-MJ-CMW"/>
+                            <constraint firstItem="MYj-1a-vTE" firstAttribute="top" secondItem="BTg-cn-f2h" secondAttribute="topMargin" id="f36-rX-PFZ"/>
+                            <constraint firstItem="MYj-1a-vTE" firstAttribute="leading" secondItem="BTg-cn-f2h" secondAttribute="leadingMargin" constant="-20" id="gU1-8a-5hh"/>
+                            <constraint firstItem="S9R-pL-0G8" firstAttribute="top" secondItem="MYj-1a-vTE" secondAttribute="bottom" id="wFa-hJ-ySn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Eqm-by-otH"/>
+                    <connections>
+                        <outlet property="webDetailView" destination="MYj-1a-vTE" id="IOc-Ps-Cyv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOV-ed-k7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3428" y="946"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uuM-wp-KbT">

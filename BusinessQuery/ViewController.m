@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MyCell.h"
 #import "MerchantInfo.h"
+#import "WebDetailViewController.h"
 
 /**
  Paths and search terms for Yelp API
@@ -19,12 +20,6 @@ static NSString * const kSearchPath = @"/v2/search/";
 //static NSString * const kSearchLimit = @"3";
 
 @interface ViewController ()
-
-/*
-@property (strong, nonatomic) NSDictionary *merchantOneDetails;
-@property (strong, nonatomic) NSDictionary *merchantTwoDetails;
-@property (strong, nonatomic) NSDictionary *merchantThreeDetails;
-*/
 
 @end
 
@@ -92,17 +87,13 @@ static NSString * const kSearchPath = @"/v2/search/";
                 }
                 // get merchant thumbnail image url
                 mInfo.thumbnail = [merchantDictionary objectForKey:@"image_url"];
+                // get merchant url page info
+                mInfo.url = [NSURL URLWithString:[merchantDictionary objectForKey:@"url"]];
                 
                 // add object to merchants array
                 [self.merchants addObject:mInfo];
             }
             
-            /*
-            // fill in the details for three merchant dictionaries
-            self.merchantOneDetails = businessArray[0];
-            self.merchantTwoDetails = businessArray[1];
-            self.merchantThreeDetails = businessArray[2];
-            */
             
             // Fill tableview with data
             [self.tableView reloadData];
@@ -143,46 +134,46 @@ static NSString * const kSearchPath = @"/v2/search/";
         cell.thumbnailImageView.image = image;
     }
     
-    /*
-    switch (indexPath.row) {
-        case 0:
-            cell.merchantName.text = [self.merchantOneDetails objectForKey:@"name"];
-            cell.merchantCategory.text = [self.merchantOneDetails objectForKey:@"categories"][0][0];
-            if ([self.merchantOneDetails objectForKey:@"is_closed"]) {
-                cell.openStatus.text = @"OPEN";
-            } else {
-                cell.openStatus.text = @"CLOSED";
-            }
-            break;
-        case 1:
-            cell.merchantName.text = [self.merchantTwoDetails objectForKey:@"name"];
-            cell.merchantCategory.text = [self.merchantTwoDetails objectForKey:@"categories"][0][0];
-            if ([self.merchantTwoDetails objectForKey:@"is_closed"]) {
-                cell.openStatus.text = @"OPEN";
-            } else {
-                cell.openStatus.text = @"CLOSED";
-            }
-
-            break;
-        case 2:
-            cell.merchantName.text = [self.merchantThreeDetails objectForKey:@"name"];
-            cell.merchantCategory.text = [self.merchantThreeDetails objectForKey:@"categories"][0][0];
-            if ([self.merchantThreeDetails objectForKey:@"is_closed"]) {
-                cell.openStatus.text = @"OPEN";
-            } else {
-                cell.openStatus.text = @"CLOSED";
-            }
-
-            break;
-            
-        default:
-            break;
-    }
-     */
      
     return cell;
 }
 
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //NSLog(@"preparing for segue: %@", segue.identifier);
+    if ([segue.identifier isEqualToString:@"showContent"]) {
+        // Get index path for selected row
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        // Retrieve corresponding merchant
+        MerchantInfo *mInfo = [self.merchants objectAtIndex:indexPath.row];
+        
+        // Two ways to set destination
+        // 1.
+        //[segue.destinationViewController setDetailURL:mInfo.url];
+        
+        // 2.
+        WebDetailViewController *wvc = (WebDetailViewController *)segue.destinationViewController;
+        wvc.detailURL = mInfo.url;
+    }
+    
+    
+}
+
+
+/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Row selected: %d", (int)indexPath.row);
+    
+    MerchantInfo *mInfo = [self.merchants objectAtIndex:indexPath.row];
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:mInfo.url];
+    
+    // Put navigation logic
+    
+    
+}
+*/
 
 
 #pragma mark - Yelp API Search Functionalities
