@@ -90,6 +90,8 @@ static NSString * const kSearchPath = @"/v2/search/";
                 } else {
                     mInfo.openStatus = @"CLOSED";
                 }
+                // get merchant thumbnail image url
+                mInfo.thumbnail = [merchantDictionary objectForKey:@"image_url"];
                 
                 // add object to merchants array
                 [self.merchants addObject:mInfo];
@@ -133,6 +135,13 @@ static NSString * const kSearchPath = @"/v2/search/";
     cell.merchantName.text = mInfo.name;
     cell.merchantCategory.text = mInfo.category;
     cell.openStatus.text = mInfo.openStatus;
+    
+    // get image url
+    if ([mInfo.thumbnail isKindOfClass:[NSString class]]) {
+        NSData *imageData = [NSData dataWithContentsOfURL:mInfo.getThumbnailURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        cell.thumbnailImageView.image = image;
+    }
     
     /*
     switch (indexPath.row) {

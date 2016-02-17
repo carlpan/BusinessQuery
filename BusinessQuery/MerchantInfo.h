@@ -13,9 +13,12 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSString *openStatus;
+@property (strong, nonatomic) NSString *thumbnail;
 
 
 - (id)initWithName:(NSString *)name;
 + (id)merchantInfoWithName:(NSString *)name;
+
+- (NSURL *)getThumbnailURL;
 
 @end

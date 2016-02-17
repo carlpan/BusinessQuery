@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *merchantName;
 @property (weak, nonatomic) IBOutlet UILabel *merchantCategory;
 @property (weak, nonatomic) IBOutlet UILabel *openStatus;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+
 
 @end
