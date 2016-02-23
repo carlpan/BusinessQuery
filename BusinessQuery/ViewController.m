@@ -11,6 +11,7 @@
 #import "MyCell.h"
 #import "MerchantInfo.h"
 #import "WebDetailViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 /**
  Paths and search terms for Yelp API
@@ -19,7 +20,15 @@ static NSString * const kAPIHost = @"api.yelp.com";
 static NSString * const kSearchPath = @"/v2/search/";
 //static NSString * const kSearchLimit = @"3";
 
-@interface ViewController ()
+@interface ViewController () <CLLocationManagerDelegate>
+
+// First search based on current location
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+// Current location tracker
+@property (strong, nonatomic) CLLocation *currentLocation;
+
+//@property (strong, nonatomic) NSURLRequest *urlRequest;
 
 @end
 
@@ -29,14 +38,16 @@ static NSString * const kSearchPath = @"/v2/search/";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self queryNearbyBusiness];
+    // Start getting current location
+    [self initializeLocationManager];
 }
 
-#pragma mark - Private methods for querying
+#pragma mark - Private methods
 
-- (void)queryNearbyBusiness {
+- (void)queryNearbyBusinessWithRequest:(NSURLRequest *)searchRequest {
     // Create a request object with search term location
-    NSURLRequest *searchRequest = [self _searchRequestWithLocation:@"Chicago, IL"];
+    //NSURLRequest *searchRequest = [self _searchRequestWithLocation:@"Chicago, IL"];
+    
     
     // Instantiate a session object
     NSURLSession *session = [NSURLSession sharedSession];
@@ -89,11 +100,15 @@ static NSString * const kSearchPath = @"/v2/search/";
                 mInfo.thumbnail = [merchantDictionary objectForKey:@"image_url"];
                 // get merchant url page info
                 mInfo.url = [NSURL URLWithString:[merchantDictionary objectForKey:@"url"]];
+                // Get merchant location
+                mInfo.latitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"latitude"];
+                mInfo.longitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"longitude"];
                 
                 // add object to merchants array
                 [self.merchants addObject:mInfo];
             }
             
+            // Merchants array filled, sort the array
             
             // Fill tableview with data
             [self.tableView reloadData];
@@ -103,6 +118,39 @@ static NSString * const kSearchPath = @"/v2/search/";
     
     [task resume];
 }
+
+- (void)initializeLocationManager {
+    self.currentLocation = [[CLLocation alloc] init];
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    // request permission from user
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];
+}
+
+- (NSNumber *)getMerchantDistanceWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
+    CLLocationDegrees merchantLatitude = [latitude doubleValue];
+    CLLocationDegrees merchantLogitude = [longitude doubleValue];
+    CLLocation *merchantLocation = [[CLLocation alloc] initWithLatitude:merchantLatitude longitude:merchantLogitude];
+    
+    // Get distance in meters
+    CLLocationDistance distance = [self.currentLocation distanceFromLocation:merchantLocation];
+    
+    // Convert to miles
+    double distanceInMiles = distance * 0.00062137;
+    
+    // Convert double to NSNumber and return
+    return [NSNumber numberWithDouble:distanceInMiles];
+}
+
+//- (NSMutableArray *)sortMerchantsWithArray:(NSMutableArray *)merchantArray {
+//
+//}
 
 
 #pragma mark - UITableViewDataSource & UITableViewDelgate
@@ -127,17 +175,19 @@ static NSString * const kSearchPath = @"/v2/search/";
     cell.merchantCategory.text = mInfo.category;
     cell.openStatus.text = mInfo.openStatus;
     
+    // Calculate distance from merchant in miles
+    NSNumber *distanceToMerchant = [self getMerchantDistanceWithLatitude:mInfo.latitude longitude:mInfo.longitude];
+    cell.merchantDistance.text = [NSString stringWithFormat:@"%.1f miles away", [distanceToMerchant doubleValue]];
+    
     // get image url
     if ([mInfo.thumbnail isKindOfClass:[NSString class]]) {
         NSData *imageData = [NSData dataWithContentsOfURL:mInfo.getThumbnailURL];
         UIImage *image = [UIImage imageWithData:imageData];
         cell.thumbnailImageView.image = image;
     }
-    
      
     return cell;
 }
-
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -156,8 +206,6 @@ static NSString * const kSearchPath = @"/v2/search/";
         WebDetailViewController *wvc = (WebDetailViewController *)segue.destinationViewController;
         wvc.detailURL = mInfo.url;
     }
-    
-    
 }
 
 
@@ -170,10 +218,25 @@ static NSString * const kSearchPath = @"/v2/search/";
     [application openURL:mInfo.url];
     
     // Put navigation logic
-    
-    
 }
 */
+
+
+#pragma mark - CLLocationManagerDelegate
+
+// Can only getting locations from this method, no other method will get locations before this delegate method
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    self.currentLocation = locations.lastObject;
+    
+    //NSLog(@"Longitude: %f", self.currentLocation.coordinate.longitude);
+    //NSLog(@"Latitude: %f", self.currentLocation.coordinate.latitude);
+    // set url request
+    NSURLRequest *request = [self _searchRequestWithCoordinates:self.currentLocation];
+    [self queryNearbyBusinessWithRequest:request];
+    
+    [self.locationManager stopUpdatingLocation];
+}
+
 
 
 #pragma mark - Yelp API Search Functionalities
@@ -187,6 +250,14 @@ static NSString * const kSearchPath = @"/v2/search/";
     //NSDictionary *params = @{@"location": location, @"limit": kSearchLimit};
     NSDictionary *params = @{@"location": location};
 
+    return [AppDelegate requestWithHost:kAPIHost path:kSearchPath params:params];
+}
+
+- (NSURLRequest *)_searchRequestWithCoordinates:(CLLocation *)location {
+    NSString *locationCoordinates = [NSString stringWithFormat:@"%f,%f", location.coordinate.latitude, location.coordinate.longitude];
+    //NSLog(@"%@", locationCoordinates);
+    NSDictionary *params = @{@"ll": locationCoordinates};
+    
     return [AppDelegate requestWithHost:kAPIHost path:kSearchPath params:params];
 }
 

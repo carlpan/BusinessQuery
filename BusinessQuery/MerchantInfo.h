@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSString *openStatus;
 @property (strong, nonatomic) NSString *thumbnail;
 @property (strong, nonatomic) NSURL *url;
+@property (strong, nonatomic) NSNumber *latitude;
+@property (strong, nonatomic) NSNumber *longitude;
 
 
 - (id)initWithName:(NSString *)name;

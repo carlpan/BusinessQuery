@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *merchantCategory;
 @property (weak, nonatomic) IBOutlet UILabel *openStatus;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UILabel *merchantDistance;
 
 
 @end

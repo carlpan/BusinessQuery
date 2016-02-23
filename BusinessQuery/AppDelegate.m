@@ -27,6 +27,11 @@ static NSString * const kTokenSecret = @"Zdj2XM83GDzA15QcLwJVSvpHrVc";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    UINavigationBar *navBar = navController.navigationBar;
+    navBar.barStyle = UIBarStyleBlackOpaque;
+    
     return YES;
 }
 
