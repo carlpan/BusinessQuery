@@ -10,8 +10,7 @@
 
 @interface ViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-// property contains array of dictionaries (each dictionary represents a yelp business)
-@property (strong, nonatomic) NSMutableArray *merchants;
+
 
 @end
 

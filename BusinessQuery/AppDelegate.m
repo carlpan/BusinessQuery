@@ -30,10 +30,12 @@ static NSString * const kTokenSecret = @"Zdj2XM83GDzA15QcLwJVSvpHrVc";
     
     // Declare a shared NSURLCache
     // with 2mb of memory and 20mb of disk space
+    /*
     NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:500 * 1024 * 1024
                                                             diskCapacity:500 * 1024 * 1024
                                                                 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
+     */
     
     //NSLog(@"DiskCache: %@ of %@", @([[NSURLCache sharedURLCache] currentDiskUsage]), @([[NSURLCache sharedURLCache] diskCapacity]));
     //NSLog(@"MemoryCache: %@ of %@", @([[NSURLCache sharedURLCache] currentMemoryUsage]), @([[NSURLCache sharedURLCache] memoryCapacity]));

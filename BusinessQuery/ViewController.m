@@ -21,15 +21,21 @@ static NSString * const kAPIHost = @"api.yelp.com";
 static NSString * const kSearchPath = @"/v2/search/";
 //static NSString * const kSearchLimit = @"3";
 
-@interface ViewController () <CLLocationManagerDelegate>
+@interface ViewController () <CLLocationManagerDelegate, UISearchResultsUpdating, UISearchBarDelegate>
 
-@property (strong, nonatomic) NSArray *merchantsReturned;
+// property contains array of dictionaries (each dictionary represents a yelp business)
+@property (strong, nonatomic) NSMutableArray *merchants;
+@property (strong, nonatomic) NSMutableArray *searchedMerchants;
+
 
 // First search based on current location
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 // Current location tracker
 @property (strong, nonatomic) CLLocation *currentLocation;
+
+// For searching
+@property (strong, nonatomic) UISearchController *searchController;
 
 
 @end
@@ -39,19 +45,18 @@ static NSString * const kSearchPath = @"/v2/search/";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    
-    // Initialize array of businesses dictionary
-    self.merchants = [NSMutableArray array];
-    
+        
     // Start getting current location
     [self initializeLocationManager];
+    
+    // Adding search functionalities
+    [self initializeSearchController];
 }
 
 #pragma mark - Private method for downloading data
 
-- (void)queryNearbyBusinessWithRequest:(NSURLRequest *)searchRequest {
-
+- (void)queryNearbyBusinessWithRequest:(NSURLRequest *)searchRequest addToResults:(NSMutableArray *)merchants {
+    
     // Instantiate a session object
     NSURLSession *session = [NSURLSession sharedSession];
     
@@ -59,7 +64,7 @@ static NSString * const kSearchPath = @"/v2/search/";
     //NSURLSession *session = [self prepareSessionForRequest];
     //NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     //AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:config];
-    
+    /*
     NSMutableURLRequest *mutableRequest = [searchRequest mutableCopy];
     [mutableRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
     
@@ -92,24 +97,11 @@ static NSString * const kSearchPath = @"/v2/search/";
         
         return;
     }
+     */
     
     
     // Create a data task to perform data downloading
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:mutableRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSLog(@"%@", response);
-        // Check for network error
-        if (error) {
-            NSLog(@"Error: Couldn't finish request: %@", error);
-            return;
-        }
-        
-        // HTTP error
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        if (httpResponse.statusCode < 200 || httpResponse.statusCode >= 300) {
-            NSLog(@"Error: Got status code %ld", (long)httpResponse.statusCode);
-            return;
-        }
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:searchRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         // Fetch JSON response
         NSError *parseErr;
@@ -118,9 +110,6 @@ static NSString * const kSearchPath = @"/v2/search/";
             NSLog(@"Error: Couldn't parse response: %@", parseErr);
             return;
         }
-        
-        NSLog(@"DiskCache: %@ of %@", @([[NSURLCache sharedURLCache] currentDiskUsage]), @([[NSURLCache sharedURLCache] diskCapacity]));
-        NSLog(@"MemoryCache: %@ of %@", @([[NSURLCache sharedURLCache] currentMemoryUsage]), @([[NSURLCache sharedURLCache] memoryCapacity]));
         
         
         // On success
@@ -136,12 +125,12 @@ static NSString * const kSearchPath = @"/v2/search/";
                 MerchantInfo *merchantInfo = [self setMerchantInfoWithContentsOfArray:merchantDictionary];
                 
                 // add object to merchants array
-                [self.merchants addObject:merchantInfo];
+                [merchants addObject:merchantInfo];
             }
             
             // Merchants array filled, sort the array
             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"merchantDistance" ascending:YES];
-            [self.merchants sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            [merchants sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 
             // Fill tableview with data
             [self.tableView reloadData];
@@ -178,6 +167,16 @@ static NSString * const kSearchPath = @"/v2/search/";
     
     [self.locationManager startUpdatingLocation];
 }
+
+- (void)initializeSearchController {
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.definesPresentationContext = YES;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+}
+
+
 
 - (NSNumber *)getMerchantDistanceWithLatitude:(NSNumber *)latitude longitude:(NSNumber *)longitude {
     CLLocationDegrees merchantLatitude = [latitude doubleValue];
@@ -228,6 +227,10 @@ static NSString * const kSearchPath = @"/v2/search/";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.searchController.active && ![self.searchController.searchBar.text isEqualToString:@""]) {
+        return [self.searchedMerchants count];
+    }
+    
     return [self.merchants count];
 }
 
@@ -238,10 +241,21 @@ static NSString * const kSearchPath = @"/v2/search/";
     [cell setLayoutMargins:UIEdgeInsetsZero];
 
     // Customize cell with merchant information
-    MerchantInfo *mInfo = [self.merchants objectAtIndex:indexPath.row];
+    MerchantInfo *mInfo;
+    if (self.searchController.active && ![self.searchController.searchBar.text isEqualToString:@""]) {
+        mInfo = [self.searchedMerchants objectAtIndex:indexPath.row];
+    } else {
+        mInfo = [self.merchants objectAtIndex:indexPath.row];
+    }
+    
     cell.merchantName.text = mInfo.name;
     cell.merchantCategory.text = mInfo.category;
     cell.openStatus.text = mInfo.openStatus;
+    if ([mInfo.openStatus isEqualToString:@"OPEN"]) {
+        cell.openStatus.textColor = [UIColor greenColor];
+    } else {
+        cell.openStatus.textColor = [UIColor redColor];
+    }
     
     // Calculate distance from merchant in miles
     cell.merchantDistance.text = [NSString stringWithFormat:@"%.1f miles away", [mInfo.merchantDistance doubleValue]];
@@ -263,7 +277,13 @@ static NSString * const kSearchPath = @"/v2/search/";
         // Get index path for selected row
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         // Retrieve corresponding merchant
-        MerchantInfo *mInfo = [self.merchants objectAtIndex:indexPath.row];
+        
+        MerchantInfo *mInfo;
+        if (self.searchController.active && ![self.searchController.searchBar.text isEqualToString:@""]) {
+            mInfo = [self.searchedMerchants objectAtIndex:indexPath.row];
+        } else {
+            mInfo = [self.merchants objectAtIndex:indexPath.row];
+        }
         
         // Two ways to set destination
         // 1.
@@ -299,11 +319,31 @@ static NSString * const kSearchPath = @"/v2/search/";
     //NSLog(@"Latitude: %f", self.currentLocation.coordinate.latitude);
     // set url request
     NSURLRequest *request = [self _searchRequestWithCoordinates:self.currentLocation];
-    [self queryNearbyBusinessWithRequest:request];
+    
+    self.merchants = [[NSMutableArray alloc] init];
+    [self queryNearbyBusinessWithRequest:request addToResults:self.merchants];
     
     [self.locationManager stopUpdatingLocation];
 }
 
+
+#pragma mark - UISearchResultsUpdatingDelegate
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *searchLocation = searchController.searchBar.text;
+    
+    // Get request with the search string
+    NSURLRequest *request = [self _searchRequestWithLocation:searchLocation];
+    
+    self.searchedMerchants = [[NSMutableArray alloc] init];
+    [self queryNearbyBusinessWithRequest:request addToResults:self.searchedMerchants];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
 
 
 #pragma mark - Yelp API Search Functionalities

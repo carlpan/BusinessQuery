@@ -94,7 +94,11 @@
                             <outlet property="delegate" destination="dFJ-dG-yRA" id="4op-8k-DjW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Locations" id="nCd-lv-LAB"/>
+                    <navigationItem key="navigationItem" title="Locations" id="nCd-lv-LAB">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="QYg-l4-xsV">
+                            <color key="tintColor" red="1" green="0.98356797768209325" blue="0.95287845246571812" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tx2-yP-94C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOV-ed-k7h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3428" y="946"/>
+            <point key="canvasLocation" x="3186" y="1396"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uuM-wp-KbT">
