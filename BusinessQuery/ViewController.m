@@ -12,6 +12,7 @@
 #import "MerchantInfo.h"
 #import "WebDetailViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AFNetworking/AFNetworking.h>
 
 /**
  Paths and search terms for Yelp API
@@ -22,13 +23,14 @@ static NSString * const kSearchPath = @"/v2/search/";
 
 @interface ViewController () <CLLocationManagerDelegate>
 
+@property (strong, nonatomic) NSArray *merchantsReturned;
+
 // First search based on current location
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 // Current location tracker
 @property (strong, nonatomic) CLLocation *currentLocation;
 
-//@property (strong, nonatomic) NSURLRequest *urlRequest;
 
 @end
 
@@ -38,22 +40,64 @@ static NSString * const kSearchPath = @"/v2/search/";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    
+    // Initialize array of businesses dictionary
+    self.merchants = [NSMutableArray array];
+    
     // Start getting current location
     [self initializeLocationManager];
 }
 
-#pragma mark - Private methods
+#pragma mark - Private method for downloading data
 
 - (void)queryNearbyBusinessWithRequest:(NSURLRequest *)searchRequest {
-    // Create a request object with search term location
-    //NSURLRequest *searchRequest = [self _searchRequestWithLocation:@"Chicago, IL"];
-    
-    
+
     // Instantiate a session object
     NSURLSession *session = [NSURLSession sharedSession];
     
+    // Instantiate a session object with configuration
+    //NSURLSession *session = [self prepareSessionForRequest];
+    //NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    //AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:config];
+    
+    NSMutableURLRequest *mutableRequest = [searchRequest mutableCopy];
+    [mutableRequest setCachePolicy:NSURLRequestUseProtocolCachePolicy];
+    
+    // Getting cached objects
+    NSCachedURLResponse *cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:mutableRequest];
+    NSLog(@"%@", cachedResponse);
+    if (cachedResponse) {
+        
+        NSLog(@"Here");
+        NSError *err;
+        NSDictionary *cachedResponseJSON = [NSJSONSerialization JSONObjectWithData:cachedResponse.data options:kNilOptions error:&err];
+        NSArray *businessArray = cachedResponseJSON[@"business"];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (NSDictionary *merchantDictionary in businessArray) {
+                // Create MerchantInfo object from dictionary
+                MerchantInfo *merchantInfo = [self setMerchantInfoWithContentsOfArray:merchantDictionary];
+                
+                // add object to merchants array
+                [self.merchants addObject:merchantInfo];
+            }
+            
+            // Merchants array filled, sort the array
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"merchantDistance" ascending:YES];
+            [self.merchants sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            
+            // Fill tableview with data
+            [self.tableView reloadData];
+        });
+        
+        return;
+    }
+    
+    
     // Create a data task to perform data downloading
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:searchRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:mutableRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSLog(@"%@", response);
         // Check for network error
         if (error) {
             NSLog(@"Error: Couldn't finish request: %@", error);
@@ -75,41 +119,30 @@ static NSString * const kSearchPath = @"/v2/search/";
             return;
         }
         
+        NSLog(@"DiskCache: %@ of %@", @([[NSURLCache sharedURLCache] currentDiskUsage]), @([[NSURLCache sharedURLCache] diskCapacity]));
+        NSLog(@"MemoryCache: %@ of %@", @([[NSURLCache sharedURLCache] currentMemoryUsage]), @([[NSURLCache sharedURLCache] memoryCapacity]));
+        
+        
         // On success
         // Get "businesses" array containing requested nearby businesses
         NSArray *businessArray = searchResponseJSON[@"businesses"];
         
         // Run on main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            // Initialized array of businesses dictionary
-            self.merchants = [NSMutableArray array];
             
             // Loop through the 'businesses' array
             for (NSDictionary *merchantDictionary in businessArray) {
-                // Create MerchantInfo object
-                MerchantInfo *mInfo = [MerchantInfo merchantInfoWithName:[merchantDictionary objectForKey:@"name"]];
-                // set merchant category
-                mInfo.category = [merchantDictionary objectForKey:@"categories"][0][0];
-                // set merchant open status
-                if ([merchantDictionary objectForKey:@"is_closed"]) {
-                    mInfo.openStatus = @"OPEN";
-                } else {
-                    mInfo.openStatus = @"CLOSED";
-                }
-                // get merchant thumbnail image url
-                mInfo.thumbnail = [merchantDictionary objectForKey:@"image_url"];
-                // get merchant url page info
-                mInfo.url = [NSURL URLWithString:[merchantDictionary objectForKey:@"url"]];
-                // Get merchant location
-                mInfo.latitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"latitude"];
-                mInfo.longitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"longitude"];
+                // Create MerchantInfo object from dictionary
+                MerchantInfo *merchantInfo = [self setMerchantInfoWithContentsOfArray:merchantDictionary];
                 
                 // add object to merchants array
-                [self.merchants addObject:mInfo];
+                [self.merchants addObject:merchantInfo];
             }
             
             // Merchants array filled, sort the array
-            
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"merchantDistance" ascending:YES];
+            [self.merchants sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+
             // Fill tableview with data
             [self.tableView reloadData];
         });
@@ -118,6 +151,19 @@ static NSString * const kSearchPath = @"/v2/search/";
     
     [task resume];
 }
+
+- (NSURLSession *)prepareSessionForRequest {
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfig.URLCache = [NSURLCache sharedURLCache];
+    sessionConfig.requestCachePolicy = NSURLRequestReturnCacheDataElseLoad;
+    [sessionConfig setHTTPAdditionalHeaders:@{@"Content-Type": @"application/json", @"Accept": @"application/json"}];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    return session;
+}
+
+
+#pragma mark - Private methods other
 
 - (void)initializeLocationManager {
     self.currentLocation = [[CLLocation alloc] init];
@@ -148,9 +194,31 @@ static NSString * const kSearchPath = @"/v2/search/";
     return [NSNumber numberWithDouble:distanceInMiles];
 }
 
-//- (NSMutableArray *)sortMerchantsWithArray:(NSMutableArray *)merchantArray {
-//
-//}
+- (MerchantInfo *)setMerchantInfoWithContentsOfArray:(NSDictionary *)merchantDictionary {
+    // Create MerchantInfo object
+    MerchantInfo *mInfo = [MerchantInfo merchantInfoWithName:[merchantDictionary objectForKey:@"name"]];
+    // set merchant category
+    mInfo.category = [merchantDictionary objectForKey:@"categories"][0][0];
+    // set merchant open status
+    if ([merchantDictionary objectForKey:@"is_closed"]) {
+        mInfo.openStatus = @"OPEN";
+    } else {
+        mInfo.openStatus = @"CLOSED";
+    }
+    // get merchant thumbnail image url
+    mInfo.thumbnail = [merchantDictionary objectForKey:@"image_url"];
+    // get merchant url page info
+    mInfo.url = [NSURL URLWithString:[merchantDictionary objectForKey:@"url"]];
+    // Get merchant location
+    mInfo.latitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"latitude"];
+    mInfo.longitude = [merchantDictionary objectForKey:@"location"][@"coordinate"][@"longitude"];
+    mInfo.merchantDistance = [self getMerchantDistanceWithLatitude:mInfo.latitude longitude:mInfo.longitude];
+    // Store id of the merchant
+    mInfo.merchantID = [merchantDictionary objectForKey:@"id"];
+    
+    return mInfo;
+}
+
 
 
 #pragma mark - UITableViewDataSource & UITableViewDelgate
@@ -176,8 +244,7 @@ static NSString * const kSearchPath = @"/v2/search/";
     cell.openStatus.text = mInfo.openStatus;
     
     // Calculate distance from merchant in miles
-    NSNumber *distanceToMerchant = [self getMerchantDistanceWithLatitude:mInfo.latitude longitude:mInfo.longitude];
-    cell.merchantDistance.text = [NSString stringWithFormat:@"%.1f miles away", [distanceToMerchant doubleValue]];
+    cell.merchantDistance.text = [NSString stringWithFormat:@"%.1f miles away", [mInfo.merchantDistance doubleValue]];
     
     // get image url
     if ([mInfo.thumbnail isKindOfClass:[NSString class]]) {
@@ -185,7 +252,7 @@ static NSString * const kSearchPath = @"/v2/search/";
         UIImage *image = [UIImage imageWithData:imageData];
         cell.thumbnailImageView.image = image;
     }
-     
+    
     return cell;
 }
 

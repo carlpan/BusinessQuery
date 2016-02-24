@@ -7,5 +7,7 @@ target 'BusinessQuery' do
 
 pod 'TDOAuth', '~> 1.1'
 
+pod 'AFNetworking', '~> 3.0'
+
 end
 

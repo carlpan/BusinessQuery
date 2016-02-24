@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSURL *url;
 @property (strong, nonatomic) NSNumber *latitude;
 @property (strong, nonatomic) NSNumber *longitude;
+@property (strong, nonatomic) NSNumber *merchantDistance;
+@property (strong, nonatomic) NSString *merchantID;
 
 
 - (id)initWithName:(NSString *)name;

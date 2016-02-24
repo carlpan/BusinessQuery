@@ -13,7 +13,5 @@
 // property contains array of dictionaries (each dictionary represents a yelp business)
 @property (strong, nonatomic) NSMutableArray *merchants;
 
-//- (void)queryNearbyBusiness;
-
 @end
 

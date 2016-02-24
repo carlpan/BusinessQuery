@@ -16,6 +16,7 @@
 		B3DFA5051C72CA1A006F091D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3DFA5041C72CA1A006F091D /* Assets.xcassets */; };
 		B3DFA5081C72CA1A006F091D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3DFA5061C72CA1A006F091D /* LaunchScreen.storyboard */; };
 		B3DFA5141C72EE78006F091D /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA5131C72EE78006F091D /* MyCell.m */; };
+		B3E397871C7D4ED5005281D2 /* MerchantController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E397861C7D4ED5005281D2 /* MerchantController.m */; };
 		F2DA5B38F109B4E30BA16EB5 /* libPods-BusinessQuery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1513FCA623E5D2C02CA5D345 /* libPods-BusinessQuery.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,8 @@
 		B3DFA5091C72CA1A006F091D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3DFA5121C72EE78006F091D /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
 		B3DFA5131C72EE78006F091D /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
+		B3E397851C7D4ED5005281D2 /* MerchantController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantController.h; sourceTree = "<group>"; };
+		B3E397861C7D4ED5005281D2 /* MerchantController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				B3DFA5131C72EE78006F091D /* MyCell.m */,
 				B35D0CB01C73DEB600571C87 /* MerchantInfo.h */,
 				B35D0CB11C73DEB600571C87 /* MerchantInfo.m */,
+				B3E397851C7D4ED5005281D2 /* MerchantController.h */,
+				B3E397861C7D4ED5005281D2 /* MerchantController.m */,
 				B391A0171C752B21000D7BF6 /* WebDetailViewController.h */,
 				B391A0181C752B21000D7BF6 /* WebDetailViewController.m */,
 				B3DFA4FE1C72CA1A006F091D /* ViewController.h */,
@@ -242,6 +247,7 @@
 				B3DFA5001C72CA1A006F091D /* ViewController.m in Sources */,
 				B3DFA5141C72EE78006F091D /* MyCell.m in Sources */,
 				B391A0191C752B21000D7BF6 /* WebDetailViewController.m in Sources */,
+				B3E397871C7D4ED5005281D2 /* MerchantController.m in Sources */,
 				B3DFA4FD1C72CA1A006F091D /* AppDelegate.m in Sources */,
 				B3DFA4FA1C72CA1A006F091D /* main.m in Sources */,
 				B35D0CB21C73DEB600571C87 /* MerchantInfo.m in Sources */,
