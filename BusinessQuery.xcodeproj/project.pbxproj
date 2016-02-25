@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B35D0CB21C73DEB600571C87 /* MerchantInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B35D0CB11C73DEB600571C87 /* MerchantInfo.m */; };
 		B391A0191C752B21000D7BF6 /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B391A0181C752B21000D7BF6 /* WebDetailViewController.m */; };
+		B3DE7D881C7E6E5E00F26D69 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DE7D871C7E6E5E00F26D69 /* MapViewController.m */; };
+		B3DE7D8A1C7E6F4200F26D69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3DE7D891C7E6F4200F26D69 /* MapKit.framework */; };
 		B3DFA4FA1C72CA1A006F091D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4F91C72CA1A006F091D /* main.m */; };
 		B3DFA4FD1C72CA1A006F091D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4FC1C72CA1A006F091D /* AppDelegate.m */; };
 		B3DFA5001C72CA1A006F091D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DFA4FF1C72CA1A006F091D /* ViewController.m */; };
@@ -28,6 +30,9 @@
 		B35D0CB11C73DEB600571C87 /* MerchantInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantInfo.m; sourceTree = "<group>"; };
 		B391A0171C752B21000D7BF6 /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
 		B391A0181C752B21000D7BF6 /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
+		B3DE7D861C7E6E5E00F26D69 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		B3DE7D871C7E6E5E00F26D69 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		B3DE7D891C7E6F4200F26D69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B3DFA4F51C72CA1A006F091D /* BusinessQuery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessQuery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3DFA4F91C72CA1A006F091D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B3DFA4FB1C72CA1A006F091D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DE7D8A1C7E6F4200F26D69 /* MapKit.framework in Frameworks */,
 				F2DA5B38F109B4E30BA16EB5 /* libPods-BusinessQuery.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +65,7 @@
 		3BFC1C6D8D89AFDE50BE3EE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3DE7D891C7E6F4200F26D69 /* MapKit.framework */,
 				1513FCA623E5D2C02CA5D345 /* libPods-BusinessQuery.a */,
 			);
 			name = Frameworks;
@@ -102,6 +109,8 @@
 				B35D0CB11C73DEB600571C87 /* MerchantInfo.m */,
 				B3E397851C7D4ED5005281D2 /* MerchantController.h */,
 				B3E397861C7D4ED5005281D2 /* MerchantController.m */,
+				B3DE7D861C7E6E5E00F26D69 /* MapViewController.h */,
+				B3DE7D871C7E6E5E00F26D69 /* MapViewController.m */,
 				B391A0171C752B21000D7BF6 /* WebDetailViewController.h */,
 				B391A0181C752B21000D7BF6 /* WebDetailViewController.m */,
 				B3DFA4FE1C72CA1A006F091D /* ViewController.h */,
@@ -247,6 +256,7 @@
 				B3DFA5001C72CA1A006F091D /* ViewController.m in Sources */,
 				B3DFA5141C72EE78006F091D /* MyCell.m in Sources */,
 				B391A0191C752B21000D7BF6 /* WebDetailViewController.m in Sources */,
+				B3DE7D881C7E6E5E00F26D69 /* MapViewController.m in Sources */,
 				B3E397871C7D4ED5005281D2 /* MerchantController.m in Sources */,
 				B3DFA4FD1C72CA1A006F091D /* AppDelegate.m in Sources */,
 				B3DFA4FA1C72CA1A006F091D /* main.m in Sources */,

@@ -97,6 +97,9 @@
                     <navigationItem key="navigationItem" title="Locations" id="nCd-lv-LAB">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="QYg-l4-xsV">
                             <color key="tintColor" red="1" green="0.98356797768209325" blue="0.95287845246571812" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="mapButtonPressed:" destination="dFJ-dG-yRA" id="R8F-8X-s37"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>

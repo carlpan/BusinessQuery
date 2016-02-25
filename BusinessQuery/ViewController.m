@@ -11,6 +11,7 @@
 #import "MyCell.h"
 #import "MerchantInfo.h"
 #import "WebDetailViewController.h"
+#import "MapViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFNetworking.h>
 
@@ -271,6 +272,8 @@ static NSString * const kSearchPath = @"/v2/search/";
 }
 
 
+#pragma mark - Segue
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     //NSLog(@"preparing for segue: %@", segue.identifier);
     if ([segue.identifier isEqualToString:@"showContent"]) {
@@ -294,6 +297,17 @@ static NSString * const kSearchPath = @"/v2/search/";
         wvc.detailURL = mInfo.url;
     }
 }
+
+- (IBAction)mapButtonPressed:(id)sender {
+    MapViewController *viewController = [[MapViewController alloc] init];
+    viewController.merchantObjects = self.merchants;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navController animated:YES completion:nil];
+    
+}
+
+
 
 
 /*
